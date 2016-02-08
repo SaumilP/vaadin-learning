@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>expense-manager</groupId>
+  <artifactId>expense-manager</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>Expense Manager</name>
+  <description>Vaadin based Standalone Expense Manager Application</description>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<vaadin.version>7.5.6</vaadin.version>
+	<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
+		
+  	<source.jdk.version>1.8</source.jdk.version>
+  	<target.jdk.version>1.8</target.jdk.version>
+  	
+  	<maven.war.plugin>2.6</maven.war.plugin>
+  	<maven.compile.plugin>3.3</maven.compile.plugin>
+  	<failOnMissingWebXml>false</failOnMissingWebXml>
+  </properties>
+  
+  <repositories>
+	<repository>
+	  <id>vaadin-addons</id>
+	  <url>http://maven.vaadin.com/vaadin-addons</url>
+	</repository>
+  </repositories>
+
+  <dependencies>
+	<dependency>
+		<groupId>com.vaadin</groupId>
+		<artifactId>vaadin-server</artifactId>
+		<version>${vaadin.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>com.vaadin</groupId>
+		<artifactId>vaadin-client-compiled</artifactId>
+		<version>${vaadin.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>com.vaadin</groupId>
+		<artifactId>vaadin-themes</artifactId>
+		<version>${vaadin.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.0.1</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>commons-beanutils</groupId>
+		<artifactId>commons-beanutils</artifactId>
+		<version>1.9.2</version>
+		<type>jar</type>
+	</dependency>
+  </dependencies>
+  
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>test</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compile.plugin}</version>
+        <configuration>
+          <source>${source.jdk.version}</source>
+          <target>${target.jdk.version}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${maven.war.plugin}</version>
+        <configuration>
+          <warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
+          <failOnMissingWebXml>${failOnMissingWebXml}</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+		<groupId>org.eclipse.jetty</groupId>
+		<artifactId>jetty-maven-plugin</artifactId>
+		<version>9.3.7.v20160115</version>
+	  </plugin>
+    </plugins>
+  </build>
+</project>
